@@ -9,5 +9,3 @@ function generateMsg(side, price, volumn)
 // {
 
 // }
-
-module.exports = new generateMsg();

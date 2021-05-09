@@ -1,5 +1,5 @@
         var sidebarVisible = false;
-		var currentPageID = "#tm-section-1";
+		var currentPageID = "#tm-section-4";
 
 		// Setup Carousel]
 function setupCarousel() {
@@ -141,7 +141,7 @@ $('.tm-img-slider').magnificPopup({
 		      	// Hide all pages
 		      	allPages.hide();
 
-		      	$("#tm-section-1").fadeIn();
+		      	$("#tm-section-4").fadeIn();
 
 		     	// Set up background first page
 		     	var bgImg = $("#tmNavLink1").data("bgImg");

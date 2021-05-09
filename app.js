@@ -5,7 +5,7 @@ let engine = require('ejs-locals');
   //載入ejs-locals 模組
 let app = express();
 
-// let socket = require('./client')
+let socket = require('./client')
 
   // 使用express
 app.engine('ejs', engine);
@@ -16,7 +16,7 @@ var serialNum = 1
 
 function generateMsg(side, price, volumn)
 {
-    return "88|" + serialNum + "|" + price + "|" + volumn + "|1|KKC|&"
+    return "87|" + serialNum + "|" + price + "|" + volumn + "|1|1|KKC|&"
 }
 
 
@@ -35,9 +35,9 @@ app.get('/clicked', (req, res) => {
   console.log(side)
   console.log(price)
   console.log(volume)
+  socket.getObject().write(generateMsg(side, price, volume));
   res.redirect('..');
-  // socket.getObject().write("test");
-  res.end();
+  serialNum++;
 });
 
 port = process.env.PORT || 8080;
