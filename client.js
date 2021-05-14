@@ -4,7 +4,7 @@ var client = new net.Socket();
 client.setTimeout(10000);
 client.connect(1203, '192.168.56.104', function() {
 	console.log('Connected');
-	client.write('1234|0324027|123|&'); //login
+	// client.write('1234|0324027|123|&'); //login
 });
 
 function dataHandler(data)

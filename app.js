@@ -16,10 +16,19 @@ var serialNum = 1
 
 // 單的種類|網單編號(NID)|委託價|買賣別|盤別|委託種類|商品代號|
 // 87|3216549876135(64bytes)|60.5|1|1|1|timestamp string|
-// 87|31352|60|1|1|1|KKC|&
-function generateMsg(side, price, volumn)
+// 87|31352|60|1|1|1|KKC|& 
+
+function generateNid()
 {
-    return "87|" + serialNum + "|" + price + "|" + side == "BUY"? "1":"2" + "|"+ volumn + "|1|1|KKC|&"
+  return serialNum++;
+}
+
+function generateMsg(side, price)
+{
+  var sideNum = "1";
+  if(side == "Sell")
+    sideNum = "2";
+  return "87|" + generateNid() + "|" + price + "|"+ sideNum + "|1|1|KKC|&"
 }
 
 
@@ -38,9 +47,24 @@ app.get('/clicked', (req, res) => {
   console.log(side)
   console.log(price)
   console.log(volume)
-  socket.getObject().write(generateMsg(side, price, volume));
-  res.redirect('..');
-  serialNum++;
+  socket.getObject().write(generateMsg(side, price));
+  res.sendStatus(200)
+  
+});
+
+app.get('/login', (req, res) => {
+  try 
+  {
+    const click = {clickTime: new Date()};
+    console.log(click);
+    socket.getObject().write("1234|0324027|123|&");
+    res.sendStatus(200);
+  } 
+  catch (error) 
+  {
+    res.sendStatus("404")
+  }
+  
 });
 
 port = process.env.PORT || 8080;
