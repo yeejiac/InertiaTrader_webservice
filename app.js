@@ -22,7 +22,7 @@ var serialNum = 1
 function generateNid()
 {
   serialNum++;
-  return socket.getnidSerialNum() + serialNum.toString();
+  return serialNum.toString();
 }
 
 function generateMsg(side, price)
@@ -65,8 +65,8 @@ app.get('/clicked', (req, res) => {
     console.log(price)
     console.log(volume)
     socket.getObject().write(generateMsg(side, price));
-    // res.preventDefault();
-    // res.sendStatus(200)
+    res.preventDefault();
+    res.sendStatus(200)
     res.redirect("/");
   } catch (error) {
     res.sendStatus(404)
@@ -87,6 +87,8 @@ app.get('/connTrader', (req, res) => {
   }
   
 });
+
+
 
 port = process.env.PORT || 8080;
 app.listen(port, function() {

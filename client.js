@@ -3,7 +3,7 @@ var net = require('net');
 var client = new net.Socket();
 var nidSerialNum;
 client.setTimeout(10000);
-client.connect(1203, '192.168.56.105', function() {
+client.connect(1203, '192.168.56.104', function() {
 	console.log('Connected');
 	// client.write('1234|0324027|123|&'); //login
 });
